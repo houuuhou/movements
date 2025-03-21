@@ -6,11 +6,13 @@ public class PlayerManager : MonoBehaviour
 {
     InputManager inputManager;
     PlayerLocamotion playerLocamotion;
+    CameraManager cameraManager;
     // Start is called before the first frame update
     private void Awake()
     {
         inputManager = GetComponent<InputManager>();
         playerLocamotion = GetComponent<PlayerLocamotion>();
+        cameraManager = FindAnyObjectByType<CameraManager>();
         
     }
 
@@ -22,5 +24,9 @@ public class PlayerManager : MonoBehaviour
     private void FixedUpdate()
     {
         playerLocamotion.HandleAllMovements();
+    }
+    private void LateUpdate()
+    {
+        cameraManager.HandleAllCameraMovement();
     }
 }
